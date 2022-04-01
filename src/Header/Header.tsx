@@ -8,10 +8,10 @@ import Link from "./Link.tsx";
 
 const styles = {
   link: {
-    marginLeft: 10
+    marginLeft: 10,
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
 };
 
@@ -20,7 +20,7 @@ const Header = ({ classes }) => {
   return (
     <div>
       <div className={classes.title}>
-      <h1>PokeMon-Pinterest-App</h1>
+        <h1>PokeMon-Pinterest-App</h1>
       </div>
       <Link href="/home" className="item">
         HomePage
@@ -30,7 +30,13 @@ const Header = ({ classes }) => {
       </Link>
 
       <Route path="/home">
-        <HomePage onAdd={(d) => setGallery([...gallery, d])} />
+        <HomePage
+          onAdd={(e, d) => {
+            const prevData = JSON.parse(localStorage.getItem("data")) || [];
+            localStorage.setItem("data", JSON.stringify([...prevData, d]));
+            e.stopPropagation();
+          }}
+        />
       </Route>
 
       <Route path="/gallery">

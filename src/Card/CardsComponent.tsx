@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card.tsx";
 
-const CardsComponent = ({ data, onAdd, onRemove }) => {
+const CardsComponent = ({ data, onAdd, onRemove, showMoreInfo }) => {
   return (
     <div>
       {data && (
@@ -12,6 +12,7 @@ const CardsComponent = ({ data, onAdd, onRemove }) => {
             type={data.types[0].type.name}
             data={data}
             onAdd={onAdd}
+            showMoreInfo={showMoreInfo}
             onRemove={onRemove}
           ></Card>
         </>

@@ -11,27 +11,44 @@ const styles = {
     border: "1px solid",
     height: 300,
     width: 250,
+    cursor: "pointer",
   },
   container: {
     margin: 100,
   },
 };
 
-const Card = ({ image, name, type, onAdd, onRemove, data, classes }) => {
+const Card = ({
+  image,
+  name,
+  type,
+  onAdd,
+  onRemove,
+  data,
+  classes,
+  showMoreInfo,
+}) => {
   return (
     <div className={classes.container}>
-      <div className={classes.card}>
+      <div
+        className={classes.card}
+        onClick={(data) => showMoreInfo({ name: name, type: type })}
+      >
         <img className={classes.img} src={image} alt={name}></img>
         {name}
         <div>{type}</div>
 
         {onAdd && (
-          <Button size="small" onClick={() => onAdd(data)} color="primary">
+          <Button size="small" onClick={(e) => onAdd(e, data)} color="primary">
             Add
           </Button>
         )}
         {onRemove && (
-          <Button size="small" onClick={() => onRemove(data)} color="primary">
+          <Button
+            size="small"
+            onClick={(e) => onRemove(e, data)}
+            color="primary"
+          >
             Remove
           </Button>
         )}
